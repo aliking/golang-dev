@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -e "scripts/update_dependencies" ]; then
+    update_dependencies
+else
+    echo 'No custom dependency script found. Using default'
+    GO111MODULE=on go mod download;
+    GO111MODULE=on go mod vendor;
+fi;

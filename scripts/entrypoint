@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# import shared functions
+. /scripts/shared
+
 CURDIR=$(dirname $0);
 
 noop()
@@ -7,15 +10,17 @@ noop()
   printf -- '';
 }
 
-ARG="$@";
+ARG="$1";
+shift 1;
+ARGS="$@";
 
 case $ARG in
   'build')
-    ${CURDIR}/build;
+    ${CURDIR}/build ${ARGS};
     exit 0;
   ;;
   'test')
-    ${CURDIR}/test;
+    ${CURDIR}/test ${ARGS};
     exit 0;
   ;;
   'init')
@@ -23,11 +28,11 @@ case $ARG in
     exit 0;
   ;;
   'shell')
-    ${CURDIR}/shell;
+    ${CURDIR}/shell ${ARGS};
     exit;
   ;;
   'start')
-    ${CURDIR}/start;
+    ${CURDIR}/start ${ARGS};
     exit 0;
   ;;
   'help')

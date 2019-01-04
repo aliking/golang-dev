@@ -1,28 +1,9 @@
 #!/bin/sh
 
 echo '
-golang-dev
-^^^^^^^^^^
-author:
-  @zephinzer (github.com/zephinzer)
+containerized scripts for golang development
 
-commands:
-  helpme  - shows this help text
-  build   -
-  init    - initialises the product
-  shell   - opens a development shell
-  start   - starts the application
-  test    - runs tests
 
-host usage:
-  non-interactive (screw ttys):
-    docker run -u ${UID} -v "$(pwd):/go/src/app" golang-dev:latest <<command>>
-
-  interactive (you need a tty);
-    docker run -u ${UID} -v "$(pwd):/go/src/app" -it golang-dev:latest shell
-
-container usage:
-  just run the commands as above (: try it
 ';
 
 printf -- 'machine information\n';
@@ -32,5 +13,7 @@ printf -- "user      : $(whoami &>/dev/null)\n";
 printf -- "user id   : $(id -u)\n";
 printf -- "directory : $(pwd)\n";
 printf -- '\n';
+printf -- "args: ${@}"
+printf -- "arg: $@"
 
-bash -l;
+#bash -l;
